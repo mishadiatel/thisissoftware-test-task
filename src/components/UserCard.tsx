@@ -24,6 +24,7 @@ const UserCard = ({user, canBeSaved}: UserCardProps) => {
         const localStorageArray = JSON.parse(localStorage.getItem('savedUsers') || '[]');
         localStorageArray.unshift(user);
         localStorage.setItem('savedUsers', JSON.stringify(localStorageArray));
+        toast('User saved', {icon: '✅'})
     };
     const showWeatherHandler = () => {
         setShowWeather(true);
