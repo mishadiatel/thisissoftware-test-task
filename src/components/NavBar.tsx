@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 export default function NavBar() {
     const pathname = usePathname();
-    console.log(pathname);
 
     return (
         <header>

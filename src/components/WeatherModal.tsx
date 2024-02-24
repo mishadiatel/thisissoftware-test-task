@@ -43,7 +43,7 @@ export default function WeatherModal({latitude, longitude, onClose, addressInfo}
         fetchWeather();
         const intervalId = setInterval(fetchWeather, 5 * 60 * 1000);
         return () => clearInterval(intervalId);
-    }, []);
+    }, [latitude, longitude]);
 
     const handleModalClick = (event: MouseEvent<HTMLDivElement>) => {
         event.stopPropagation();
