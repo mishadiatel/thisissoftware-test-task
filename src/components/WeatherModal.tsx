@@ -11,10 +11,11 @@ type WeatherModalProps = Readonly<{
     latitude: string;
     longitude: string;
     onClose: () => void;
-    addressInfo: { country: string, state: string, city: string };
+    // addressInfo: { country: string, state: string, city: string };
+    fullName: string;
 }>
 
-export default function WeatherModal({latitude, longitude, onClose, addressInfo}: WeatherModalProps) {
+export default function WeatherModal({latitude, longitude, onClose, fullName}: WeatherModalProps) {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
     const [weather, setWeather] = useState<IWeatherData | null>(null);
@@ -53,7 +54,7 @@ export default function WeatherModal({latitude, longitude, onClose, addressInfo}
     return (
         <ModalOverlay onClose={onClose} handleModalClick={handleModalClick}>
             <h3 className={'text-center font-bold text-xl mb-6'}>
-                {`Weather in ${addressInfo.country} state ${addressInfo.state} city ${addressInfo.city}`}
+                Weather in {fullName} ({latitude}, {longitude})
             </h3>
             {isLoading && <p>Loading...</p>}
             {error && <p>{error}</p>}

@@ -24,7 +24,7 @@ const UserCard = ({user, canBeSaved}: UserCardProps) => {
         const localStorageArray = JSON.parse(localStorage.getItem('savedUsers') || '[]');
         localStorageArray.unshift(user);
         localStorage.setItem('savedUsers', JSON.stringify(localStorageArray));
-        toast('User saved', {icon: '✅'})
+        toast('User saved', {icon: '✅'});
     };
     const showWeatherHandler = () => {
         setShowWeather(true);
@@ -57,7 +57,8 @@ const UserCard = ({user, canBeSaved}: UserCardProps) => {
                 <div className={'flex flex-col justify-between'}>
                     <div className={'h-16 w-16 max-[532px]:h-10 max-[532px]:w-10 rounded-full overflow-hidden'}>
                         <Image src={user.picture.medium} alt={'user picture'} width={100} height={100}
-                               className={'object-cover'}/>
+                               className={'object-cover'}
+                               title={`${user.name.title} ${user.name.first} ${user.name.last}`}/>
                     </div>
                 </div>
                 <div className={'flex-1'}>
@@ -89,11 +90,7 @@ const UserCard = ({user, canBeSaved}: UserCardProps) => {
             {showWeather && <WeatherModal latitude={user.location.coordinates.latitude}
                                           longitude={user.location.coordinates.longitude}
                                           onClose={hideWeatherHandler}
-                                          addressInfo={{
-                                              country: user.location.country,
-                                              state: user.location.state,
-                                              city: user.location.city
-                                          }}
+                                          fullName={`${user.name.title} ${user.name.first} ${user.name.last}`}
             />
             }
             {showMap &&
